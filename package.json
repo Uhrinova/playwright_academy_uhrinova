@@ -1,0 +1,22 @@
+{
+  "name": "playwright_academy_uhrinova",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Uhrinova/playwright_academy_uhrinova.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Uhrinova/playwright_academy_uhrinova/issues"
+  },
+  "homepage": "https://github.com/Uhrinova/playwright_academy_uhrinova#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^24.2.0"
+  }
+}
