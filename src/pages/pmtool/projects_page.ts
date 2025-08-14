@@ -11,17 +11,21 @@ export class ProjectsPage {
   }
 
   async clickAddProject(): Promise<CreateNewProjectModal> {
+    await this.page.waitForTimeout(1000); // ! Toto není doporučená praktika! Implicitní čekání (čekání na tvrdo) používáje jen když nemáme jinou alternativu (ukážeme si v rámci lekce, kde budeme provádět kontroly)
     await this.addProjectButton.click();
     return new CreateNewProjectModal(this.page);
   }
 }
 
 /*
-ProjectsPage
-⌛7:00
-Prvek:
-addProjectButton
-Metoda:
-clickAddProject(): CreateNewProjectModal
+CreateNewProjectModal
+⌛10:00
+Prvky:
+nameInput
+saveButton
+Metody:
+typeName(): CreateNewProjectModal
+clickSave(): ProjectTasksPage
+
 
 */
