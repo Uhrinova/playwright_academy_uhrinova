@@ -20,13 +20,14 @@
   },
   "homepage": "https://github.com/Uhrinova/playwright_academy_uhrinova#readme",
   "devDependencies": {
-    "@eslint/js": "^9.34.0",
+    "@eslint/js": "^9.32.0",
+    "@faker-js/faker": "^9.9.0",
     "@playwright/test": "^1.54.2",
     "@types/node": "^24.2.0",
-    "eslint": "^9.34.0",
+    "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-playwright": "^2.2.2",
     "typescript": "^5.9.2",
-    "typescript-eslint": "^8.41.0"
+    "typescript-eslint": "^8.39.0"
   }
 }
