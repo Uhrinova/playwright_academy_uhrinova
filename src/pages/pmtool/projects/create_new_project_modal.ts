@@ -1,4 +1,3 @@
-export class CreateNewProjectModal {}
 import { Locator, Page } from "@playwright/test";
 import { ProjectTasksPage } from "./project_tasks_page.ts";
 
@@ -23,3 +22,15 @@ export class CreateNewProjectModal {
     return new ProjectTasksPage(this.page);
   }
 }
+
+/*
+ProjectTasksPage
+⌛5:00
+Prvky i metody zkopírujeme z DashboardPage
+Prvek:
+profileButton
+logoutButton
+Metoda:
+clickProfile(): ProjectTasksPage
+clickLogout(): LoginPage
+*/
