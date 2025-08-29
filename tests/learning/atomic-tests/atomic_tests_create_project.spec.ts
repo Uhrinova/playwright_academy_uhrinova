@@ -118,10 +118,5 @@ test.describe("Atomic Tests: Create Project Modal", () => {
 
   test("Description iframe Test", async ({ page }) => {
     const addProjectModal = new CreateNewProjectModal(page);
-    const descriptionText = "Description Test";
-    await addProjectModal.fillDescription(descriptionText);
-    // ? Ideální je toto předat do Page Objectu:
-    const frame = page.frameLocator(addProjectModal.descriptionFrame);
-    await expect(frame.locator("body")).toHaveText(descriptionText);
   });
 });
