@@ -2,8 +2,9 @@ import { test } from "@playwright/test";
 import { LoginPage } from "../../src/pages/pmtool/login_page.ts";
 import { DashboardPage } from "../../src/pages/pmtool/dashboard_page.ts";
 
+
 test("PageObjects Exercise - Login and Logout", async ({ page }) => {
-  const loginPage = new LoginPage(page);
+  const loginPage = new LoginPage(page);//novú triedu musím vybrat z výberovníka !!!ked import už mám ale nieje dobrý treba ho najskor vymazať a vytvorit odznovu !!! 
   const dashboardPage = new DashboardPage(page);
 
   await loginPage.openPmtool();

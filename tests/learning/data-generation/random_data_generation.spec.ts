@@ -5,7 +5,7 @@ import { fakerCS_CZ as faker } from "@faker-js/faker";
 // import { faker } from "@faker-js/faker"; // ? anglická verze faker - funguje vždy
 
 test("Testing Data Generation with Faker", async ({ page }) => {
-  await page.goto("https://tredgate.com/pmtool");
+  await page.goto("https://tredgate.com/pmtool");//táto adresa tu je irevantná pre tento test lebo sa dáta vypíšu do konzolygit 
   const firstName = faker.person.firstName();
   const lastName = faker.person.lastName();
   const email = faker.internet.exampleEmail();
