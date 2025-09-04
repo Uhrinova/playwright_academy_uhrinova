@@ -11,4 +11,7 @@ test("PageObjects Exercise - Login and Logout", async ({ page }) => {
   await loginPage.login("pw_academy", "Playwright321!");
   await dashboardPage.clickProfile();
   await dashboardPage.clickLogout();
+  await loginPage.fillUsername("pw_academy");
+  await loginPage.fillPassword("Playwright321!");
+  await loginPage.clickLogin();
 });

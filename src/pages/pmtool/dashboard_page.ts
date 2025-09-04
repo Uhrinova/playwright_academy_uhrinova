@@ -9,7 +9,8 @@ export class DashboardPage {
   constructor(page: Page) {
     this.page = page;
     this.profileButton = page.locator("#user_dropdown");
-    this.logoutButton = page.locator("#logout");
+    //this.logoutButton = page.locator("//a[normalize-space()='Logoff']");
+    this.logoutButton = page.locator("#logout > a");
   }
   //Metódy!!!!!!!!!!!!!!!!!!!!!!!!!!
   async clickProfile() {
