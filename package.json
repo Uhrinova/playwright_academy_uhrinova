@@ -29,5 +29,8 @@
     "eslint-plugin-playwright": "^2.2.2",
     "typescript": "^5.9.2",
     "typescript-eslint": "^8.41.0"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.18"
   }
 }
