@@ -1,23 +1,25 @@
 import { Locator, Page } from "@playwright/test";
+import { LoginPage } from "./login_page.ts";
 
 export class DashboardPage {
   readonly page: Page;
-  //readonly url ="https://tredhttps://tredgate.com/pmtool/index.php?module=dashboard/gate.com/pmtool";- adresa tam nieje!!!
   readonly profileButton: Locator;
   readonly logoutButton: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.profileButton = page.locator("#user_dropdown");
+    this.profileButton = page.locator("#user_dropdown > a");
     //this.logoutButton = page.locator("//a[normalize-space()='Logoff']");
     this.logoutButton = page.locator("#logout > a");
   }
   //Metódy!!!!!!!!!!!!!!!!!!!!!!!!!!
-  async clickProfile() {
+  async clickProfile(): Promise<this> {
     await this.profileButton.click();
+    return this;
   }
 
-  async clickLogout() {
+  async clickLogout(): Promise<LoginPage> {
     await this.logoutButton.click();
+    return new LoginPage(this.page);
   }
 }

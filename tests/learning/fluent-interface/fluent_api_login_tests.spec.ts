@@ -12,5 +12,5 @@ test("Fluent Interface - Login Test", async ({ page }) => {
     .then((login) => login.fillPassword("Playwright321!"))
     .then((login) => login.clickLogin())
     .then((dashboard) => dashboard.clickProfile())
-    .then((dashboard) => dashboard.clickLogout());
+    .then((dashboard) => dashboard.clickLogout())
 });
