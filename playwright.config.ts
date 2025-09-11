@@ -1,10 +1,11 @@
-import { defineConfig, devices } from '@playwright/test';
+import { defineConfig, devices } from "@playwright/test";
 
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
  */
-// import dotenv from 'dotenv';
+import dotenv from "dotenv";
+dotenv.config();
 // import path from 'path';
 // dotenv.config({ path: path.resolve(__dirname, '.env') });
 
@@ -22,22 +23,19 @@ export default defineConfig({
   /* Opt out of parallel tests on CI. */
   workers: process.env.CI ? 1 : undefined,
   /* Reporter to use. See https://playwright.dev/docs/test-reporters */
-  reporter: "html",
+  reporter: [["html"], ["line"]],
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   timeout: 60 * 1000, // ? Timeout celého testu (maximální doba běhu)
   globalTimeout: 1 * 60 * 60 * 1000, // ? čitelnější zápis, než: 3600000, nastavuje timeout pro běh všech testů
-
   expect: {
     // ? Konfigurace kontrol (assertů)
     timeout: 10 * 1000, // ? Maximální doba čekání assertů, pozor! Vysoké hodnoty zpomalí testy v případě pádů
   },
-
   use: {
     /* Base URL to use in actions like `await page.goto('/')`. */
     // baseURL: 'http://localhost:3000',
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
-
     screenshot: "on-first-failure",
     video: "off",
     trace: "retain-on-failure",
@@ -57,10 +55,10 @@ export default defineConfig({
       use: { ...devices["Desktop Firefox"] },
     },
 
-    {
-      name: "webkit",
-      use: { ...devices["Desktop Safari"] },
-    },
+    // {
+    //   name: "webkit",
+    //   use: { ...devices["Desktop Safari"] },
+    // },
 
     /* Test against mobile viewports. */
     // {

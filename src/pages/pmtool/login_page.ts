@@ -1,42 +1,68 @@
-import { Locator, Page } from "@playwright/test";
+import { expect, Locator, Page, test } from "@playwright/test";
+import { DashboardPage } from "./dashboard_page.ts";
+import { LostPasswordPage } from "./lost_password_page.ts";
 
 export class LoginPage {
-  //Vlastnosti - properties, premenné triedy
-  readonly page: Page; //Page je trieda z Playwrightu vyberá sa z výberovníka !
-  readonly url = "https://tredgate.com/pmtool"; //url adresa je len na prvej stránke kde sa bude otvárat aplikácia
-  readonly usernameInput: Locator; //Location vyberám z výberovníka a tak s ami do imortu doplní Locator
+  readonly page: Page;
+  readonly url = "https://tredgate.com/pmtool"; // ? Jen na první stránce (PO), kde budeme otvírat aplikaci
+  readonly usernameInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
+  readonly lostPasswordAnchor: Locator;
+  readonly pageHeader: Locator;
 
   constructor(page: Page) {
     this.page = page;
-    this.usernameInput = page.locator("#username"); //page.locator() je metóda, ktorá nájde element na stránke podľa CSS selektora/ lokátora #username.  hovorí: "Nájdi element, ktorého id je 'username'".
+    this.usernameInput = page.locator("#username"); // ! V případě nastavování lokátorů, nedáváme await před page
     this.passwordInput = page.locator("#password");
-
-    
-    this.loginButton = page.locator(".btn"); // hovorí: "Nájdi element, ktorého class je 'btn'".
+    this.loginButton = page.locator(".btn");
+    this.lostPasswordAnchor = page.locator("//a[@id='forget_password']");
+    this.pageHeader = page.locator(".form-title");
   }
-  //Metódy!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-  async openPmtool() {
+  async pageHeaderHasText(headerText: string): Promise<this> {
+    await expect(this.pageHeader, "Login Page Header have text").toHaveText(
+      headerText
+    );
+    return this;
+  }
+
+  // Při vytváření metod doporučím přístup začít s atomickými (malými) metodami s jedním krokem a pak vytvářet sdružující metody
+  // Například: typeUsername - jeden krok, login - sdružení více kroků
+  // Atomické metody používáme, když danou funkcionalitu testujeme a sdružující metody například pro preconditions jiných testů
+
+  async openPmtool(): Promise<this> {
     await this.page.goto(this.url);
+    return this;
   }
 
-  async fillUsername(username: string) {
+  // ! Testovací data NIKDY nedáváme do metod, ale posíláme je parametrems
+  async fillUsername(username: string): Promise<this> {
     await this.usernameInput.fill(username);
+    return this;
   }
 
-  async fillPassword(password: string) {
+  async fillPassword(password: string): Promise<this> {
     await this.passwordInput.fill(password);
+    return this;
   }
 
-  async clickLogin() {
+  async clickLogin(): Promise<DashboardPage> {
     await this.loginButton.click();
+    return new DashboardPage(this.page);
   }
 
-  async login(username: string, password: string) {
-    await this.fillUsername(username);
-    await this.fillPassword(password);
-    await this.clickLogin();
+  async login(username: string, password: string): Promise<DashboardPage> {
+    await test.step("Login to Pmtool", async () => {
+      await this.fillUsername(username);
+      await this.fillPassword(password);
+      await this.clickLogin();
+    });
+    return new DashboardPage(this.page);
+  }
+
+  async clickPasswordForgotten(): Promise<LostPasswordPage> {
+    await this.lostPasswordAnchor.click();
+    return new LostPasswordPage(this.page);
   }
 }
