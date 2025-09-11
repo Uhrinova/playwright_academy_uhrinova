@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { CreateNewProjectModal } from "./projects/create_new_project_modal.ts";
+import { CreateNewProjectModal } from "../projects/create_new_project_modal.ts";
 
 export class ProjectsPage {
   readonly page: Page;
