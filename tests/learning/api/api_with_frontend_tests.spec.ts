@@ -37,10 +37,9 @@ test.describe("Frontend with API Tests", () => {
       expect(requestBody, "Login Request body.username exist").toHaveProperty(
         "username"
       );
-        // ? toBeDefined provádí velice podobnou kontrolu jako toHaveP
-        expect(requestBody.password).toBeDefined()
-        "username"
-      );
+      // ? toBeDefined provádí velice podobnou kontrolu jako toHaveP
+      expect(requestBody.password).toBeDefined();
+
       // ? toBeDefined provádí velice podobnou kontrolu jako toHaveProperty - je to alternativa
       expect(
         requestBody.password,
@@ -96,4 +95,4 @@ test.describe("Frontend with API Tests", () => {
       ).toBe("string");
     });
   });
-
+});
